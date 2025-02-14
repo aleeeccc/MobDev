@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,13 +14,14 @@ import java.util.ArrayList;
 
 public class DetailsActivity extends AppCompatActivity {
 
+    private CartItemClass foodItem;
     private ImageView foodImage;
-    TextView foodNameTextView, foodPriceTextView, foodDescriptionTextView, counterTextView, totalTextView;
-    Button btnAdd, btnMinus, btnBack, btnAddToCart, btnCheckout;
     private int foodImg, counter = 1;
     private double foodPrice, priceTotal;
-    private String foodName, foodDescription;
+    private String foodName, foodDescription, foodCategory;
     private ArrayList<CartItemClass> cartItems;
+    TextView foodNameTextView, foodPriceTextView, foodDescriptionTextView, counterTextView, totalTextView;
+    Button btnAdd, btnMinus, btnBack, btnAddToCart, btnCheckout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +39,13 @@ public class DetailsActivity extends AppCompatActivity {
         foodDescriptionTextView = findViewById(R.id.food_description);
         totalTextView = findViewById(R.id.total_amount);
 
-        foodImg = getIntent().getIntExtra("food_image", 0);
-        foodName = getIntent().getStringExtra("food_name");
-        foodPrice = getIntent().getDoubleExtra("food_price", 0);
-        foodDescription = getIntent().getStringExtra("food_description");
+        foodItem = (CartItemClass) getIntent().getSerializableExtra("food_item");
+
+        foodImg = foodItem.getFoodImage();
+        foodName = foodItem.getFoodName();
+        foodPrice = foodItem.getFoodPrice();
+        foodDescription = foodItem.getFoodDescription();
+        foodCategory = foodItem.getCategory();
 
         foodImage.setImageResource(foodImg);
         foodNameTextView.setText(foodName);
@@ -69,8 +74,10 @@ public class DetailsActivity extends AppCompatActivity {
         btnAddToCart.setOnClickListener(v -> {
             if (counter > 0) {
                 addItemToCart(cartItems);
+                Toast.makeText(DetailsActivity.this, "Item added to cart", Toast.LENGTH_SHORT).show();
             } else {
                 removeItemFromCart(cartItems);
+                Toast.makeText(DetailsActivity.this, "Item removed from cart", Toast.LENGTH_SHORT).show();
             }
             navigateToHome();
         });
@@ -117,9 +124,11 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         if (!itemExists) {
-            CartItemClass newItem = new CartItemClass(foodName, foodPrice, counter, foodPrice * counter, foodImg);
+            CartItemClass newItem = new CartItemClass(foodName, foodPrice, foodDescription, counter, foodPrice * counter, foodImg, foodCategory);
             cartItems.add(newItem);
         }
+
+
     }
 
     private void removeItemFromCart(ArrayList<CartItemClass> cartItems) {
@@ -138,8 +147,10 @@ public class DetailsActivity extends AppCompatActivity {
     private void updateAddToCartButton() {
         if (counter == 0) {
             btnAddToCart.setText("Remove Item");
+            btnAddToCart.setBackgroundColor(getResources().getColor(R.color.colorRemove));
         } else {
             btnAddToCart.setText("Add to Cart");
+            btnAddToCart.setBackgroundColor(getResources().getColor(R.color.colorAdd));
         }
     }
 

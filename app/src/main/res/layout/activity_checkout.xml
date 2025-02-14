@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="#F8F8F8"
+    android:background="#F5F5F5"
     tools:context=".CheckoutActivity">
 
     <TextView
@@ -29,7 +29,7 @@
         android:background="@android:color/white"
         android:divider="@android:color/darker_gray"
         android:dividerHeight="1dp"
-        android:padding="8dp"/>
+        android:padding="8dp" />
 
     <!-- Order Status Message -->
     <TextView

@@ -7,64 +7,71 @@
     android:padding="20dp"
     android:background="#F5F5F5">
 
-    <!-- Welcome Header -->
-    <TextView
-        android:id="@+id/welcomeHeader"
-        android:layout_width="wrap_content"
+    <!-- Welcome Header with Profile Picture -->
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Welcome, User!"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#000"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/welcomeHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome, User!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:id="@+id/profile_picture"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/john_doe"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:contentDescription="Profile Picture" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#000"
         android:layout_marginBottom="10dp" />
 
     <!-- Search Bar & Filter Icon -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:gravity="center_vertical"
-        android:padding="10dp"
-        android:background="#FFFFFF"
         android:elevation="4dp"
         android:radius="8dp">
 
-        <EditText
-            android:id="@+id/search"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <TextView
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Search..."
-            android:textSize="16sp"
-            android:padding="12dp"
-            android:background="@android:color/transparent"
-            android:textColor="#000" />
+            android:text="Select a category:"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:layout_marginBottom="8dp"/>
 
-        <ImageView
-            android:id="@+id/filter_icon"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:padding="5dp"
-            android:src="@android:drawable/ic_menu_search"
-            app:tint="#333" />
+        <Spinner
+            android:id="@+id/category_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/rounded_spinner" />
     </LinearLayout>
-
-    <!-- "See all" Button -->
-    <TextView
-        android:id="@+id/see_all"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="See All"
-        android:textSize="16sp"
-        android:textStyle="bold"
-        android:textColor="#1976D2"
-        android:layout_gravity="end"
-        android:padding="8dp"
-        android:layout_marginTop="10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="10dp"
         android:layout_weight="1">
 
         <ScrollView
@@ -78,249 +85,11 @@
                 android:gravity="center">
 
                 <GridLayout
-                    android:layout_width="match_parent"
+                    android:id="@+id/food_container"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:columnCount="2"
-                    android:padding="8dp">
-
-                    <!-- Food Item 1 -->
-                    <LinearLayout
-                        android:id="@+id/food1"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food1_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="#E0E0E0"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food1"/>
-
-                        <TextView
-                            android:id="@+id/food1_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Masala Curry"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food1_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$25.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- Food Item 2 -->
-                    <LinearLayout
-                        android:id="@+id/food2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food2_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="#E0E0E0"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food2"/>
-
-                        <TextView
-                            android:id="@+id/food2_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Hot Egg Masala"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food2_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$30.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- Food Item 3 -->
-                    <LinearLayout
-                        android:id="@+id/food3"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food3_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="#E0E0E0"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food3"/>
-
-                        <TextView
-                            android:id="@+id/food3_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pasta Alfredo"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food3_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$20.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- Food Item 4 -->
-                    <LinearLayout
-                        android:id="@+id/food4"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food4_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:background="#E0E0E0"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food4"/>
-
-                        <TextView
-                            android:id="@+id/food4_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Tandoori Chicken"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food4_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$35.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- Food Item 5 -->
-                    <LinearLayout
-                        android:id="@+id/food5"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food5_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food5"/>
-
-                        <TextView
-                            android:id="@+id/food5_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Veggie Pizza"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food5_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$28.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
-                    <!-- Food Item 6 -->
-                    <LinearLayout
-                        android:id="@+id/food6"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_columnWeight="1"
-                        android:orientation="vertical"
-                        android:padding="10dp"
-                        android:background="#FFF"
-                        android:elevation="4dp"
-                        android:layout_margin="8dp">
-
-                        <ImageView
-                            android:id="@+id/food6_image"
-                            android:layout_width="match_parent"
-                            android:layout_height="120dp"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/food6"/>
-
-                        <TextView
-                            android:id="@+id/food6_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="BBQ Ribs"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:textColor="#000"
-                            android:layout_marginTop="8dp"/>
-
-                        <TextView
-                            android:id="@+id/food6_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="$40.00"
-                            android:textSize="16sp"
-                            android:textColor="#D32F2F"
-                            android:layout_marginTop="4dp"/>
-                    </LinearLayout>
-
+                    android:layout_marginTop="8dp">
                 </GridLayout>
 
             </LinearLayout>
@@ -345,7 +114,8 @@
             android:textSize="18sp"
             android:textColor="#FFF"
             android:backgroundTint="#1976D2"
-            android:padding="12dp"/>
+            android:padding="12dp"
+            android:visibility="visible"/>
     </LinearLayout>
 
 </LinearLayout>

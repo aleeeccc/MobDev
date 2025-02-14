@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="20dp"
-    android:backgroundTint="#F5F5F5">
+    android:background="#F5F5F5">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -13,13 +13,15 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="6dp"
         android:padding="12dp"
-        android:layout_marginBottom="16dp">
+        android:layout_marginBottom="16dp"
+        android:background="#FFFFFF">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:background="#FFFFFF">
 
             <!-- Food Image -->
             <ImageView
